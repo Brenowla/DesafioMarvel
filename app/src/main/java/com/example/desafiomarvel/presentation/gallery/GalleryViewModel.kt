@@ -1,4 +1,4 @@
-package com.example.desafiomarvel.ui.gallery
+package com.example.desafiomarvel.presentation.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

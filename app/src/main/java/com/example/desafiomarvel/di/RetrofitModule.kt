@@ -1,15 +1,31 @@
 package com.example.desafiomarvel.di
 
+import com.example.desafiomarvel.extensions.md5
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.*
 import javax.inject.Singleton
 
 @Module
 class RetrofitModule {
+
+    private val mCredentialsInterceptor = Interceptor {chain ->
+        val original = chain.request()
+        val originalHttpUrl = original.url
+
+        val ts = (Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L).toString()
+        val url = originalHttpUrl.newBuilder()
+            .addQueryParameter("apikey", "b653e3e876058b6733b904a9a4a030d1")
+            .addQueryParameter("ts", ts)
+            .addQueryParameter("hash", ts+"a2a47a3377ce9a627fd5f98ed7ac85a1c06f0a4d"+"b653e3e876058b6733b904a9a4a030d1".md5())
+            .build()
+        chain.proceed(original.newBuilder().url(url).build())
+    }
 
     // Initializing
     @Provides
@@ -21,6 +37,7 @@ class RetrofitModule {
     fun provideOkHttpClient(logging: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(logging)
+            .addInterceptor(mCredentialsInterceptor)
             .build()
     }
 
