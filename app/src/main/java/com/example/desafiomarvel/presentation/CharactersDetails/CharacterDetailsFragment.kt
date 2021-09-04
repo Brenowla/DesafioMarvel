@@ -1,4 +1,4 @@
-package com.example.desafiomarvel.presentation.home
+package com.example.desafiomarvel.presentation.CharactersDetails
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.desafiomarvel.databinding.FragmentHomeBinding
+import com.example.desafiomarvel.databinding.FragmentCharacterDetailsBinding
 
-class HomeFragment : Fragment() {
+class CharacterDetailsFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentCharacterDetailsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,17 +21,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+    ): View {
+        _binding = FragmentCharacterDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
 

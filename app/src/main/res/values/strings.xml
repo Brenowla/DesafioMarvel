@@ -10,4 +10,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="text_search_marvel"><u>BUSCA</u> MARVEL</string>
+    <string name="text_test_front">TESTE FRONT END</string>
+    <string name="text_name">Nome do personagem</string>
+    <string name="text_only_name">Nome</string>
 </resources>

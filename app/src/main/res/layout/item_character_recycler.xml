@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_name"
+            android:layout_marginHorizontal="18dp"
+            tools:src="@drawable/ic_arrow_right"
+            android:layout_marginVertical="18dp"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/iv_icon"
+            app:layout_constraintBottom_toBottomOf="@id/iv_icon"
+            app:layout_constraintStart_toEndOf="@id/iv_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Tony Stark"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/grey"
+            android:layout_marginEnd="18dp"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
