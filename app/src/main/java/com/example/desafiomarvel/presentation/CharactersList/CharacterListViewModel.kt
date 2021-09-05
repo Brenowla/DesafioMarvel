@@ -65,7 +65,7 @@ class CharacterListViewModel @Inject constructor(
 
     fun nextPage() {
         mPage.value?.let { pageInfo ->
-            if ((mPageNumber * LIMIT + LIMIT) < pageInfo.total) {
+            if ((mPageNumber * LIMIT + LIMIT) < pageInfo.total && loading.value == false) {
                 mPageNumber += 1
                 getCharacters()
             }
@@ -74,7 +74,7 @@ class CharacterListViewModel @Inject constructor(
 
     fun backPage() {
         mPage.value?.let { pageInfo ->
-            if (mPageNumber > 0) {
+            if (mPageNumber > 0 && loading.value == false) {
                 mPageNumber -= 1
                 getCharacters()
             }
