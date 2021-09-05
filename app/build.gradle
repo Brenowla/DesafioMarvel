@@ -8,7 +8,8 @@ plugins {
 
 android {
     compileSdk 31
-
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
     defaultConfig {
         applicationId "com.example.desafiomarvel"
         minSdk 23
@@ -19,6 +20,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "API_KEY", "\"" +localProperties['api_key']+ "\"")
+            buildConfigField("String", "SECRET_KEY", "\"" + localProperties['secret_key'] + "\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

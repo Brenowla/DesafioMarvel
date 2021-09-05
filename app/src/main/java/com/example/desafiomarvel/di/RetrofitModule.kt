@@ -1,5 +1,6 @@
 package com.example.desafiomarvel.di
 
+import com.example.desafiomarvel.BuildConfig
 import com.example.desafiomarvel.data.remote.service.MarvelCharactersService
 import com.example.desafiomarvel.extensions.md5
 import dagger.Module
@@ -21,9 +22,9 @@ class RetrofitModule {
 
         val ts = (Calendar.getInstance(TimeZone.getTimeZone("UTC")).timeInMillis / 1000L).toString()
         val url = originalHttpUrl.newBuilder()
-            .addQueryParameter("apikey", "b653e3e876058b6733b904a9a4a030d1")
+            .addQueryParameter("apikey", BuildConfig.API_KEY)
             .addQueryParameter("ts", ts)
-            .addQueryParameter("hash", (ts+"a2a47a3377ce9a627fd5f98ed7ac85a1c06f0a4d"+"b653e3e876058b6733b904a9a4a030d1").md5())
+            .addQueryParameter("hash", (ts+BuildConfig.SECRET_KEY+BuildConfig.API_KEY).md5())
             .build()
         chain.proceed(original.newBuilder().url(url).build())
     }
