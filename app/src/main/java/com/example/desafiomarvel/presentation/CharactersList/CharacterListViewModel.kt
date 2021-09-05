@@ -33,6 +33,7 @@ class CharacterListViewModel @Inject constructor(
     private var mQuery: String? = null
 
     fun loadInitialPage(query: String) {
+        if(query == mQuery) return
         mQuery = if (query.isBlank()) {
             null
         } else {

@@ -18,6 +18,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -49,7 +51,9 @@ class CharacterListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         DesafioMarvelApp.appComponent.inject(this)
         super.onViewCreated(view, savedInstanceState)
-        mCharacterListViewModel.getCharacters()
+        if (mCharacterListViewModel.page.value == null) {
+            mCharacterListViewModel.getCharacters()
+        }
         binding.rvListCharacters.adapter = mAdapter
         observers()
         listeners()
@@ -64,40 +68,52 @@ class CharacterListFragment : Fragment() {
         binding.ivNext.setOnClickListener {
             mCharacterListViewModel.nextPage()
         }
-        lifecycleScope.launch {
-            binding.etName.textChanges()
-                .debounce(500L)
-                .collect { query ->
-                    mCharacterListViewModel.loadInitialPage(query?.toString() ?: "")
-                }
-        }
+        binding.etName.textChanges()
+            .debounce(500L)
+            .map { query ->
+                mCharacterListViewModel.loadInitialPage(query?.toString() ?: "")
+            }
+            .launchIn(lifecycleScope)
     }
 
     private fun observers() {
         mCharacterListViewModel.page.observe(viewLifecycleOwner) { page ->
             mAdapter.submitList(page.characters)
+            binding.rvListCharacters.visibility = View.VISIBLE
             changeNumbers(page)
         }
-        mCharacterListViewModel.loading.observe(viewLifecycleOwner) { loading->
-
+        mCharacterListViewModel.loading.observe(viewLifecycleOwner) { loading ->
+            if (loading) {
+                binding.slList.apply {
+                    visibility = View.VISIBLE
+                    startShimmer()
+                }
+                binding.rvListCharacters.visibility = View.GONE
+            } else {
+                binding.slList.apply {
+                    visibility = View.GONE
+                    stopShimmer()
+                }
+            }
         }
     }
 
     private fun changeNumbers(page: PageInfo?) {
         page?.let { actualPage ->
-            binding.tvFirst.visibility = if(actualPage.offset > 0) {
-                 View.VISIBLE
-            } else {
-                View.INVISIBLE
-            }
-            binding.tvThird.visibility = if(actualPage.offset+actualPage.limit < actualPage.total) {
+            binding.tvFirst.visibility = if (actualPage.offset > 0) {
                 View.VISIBLE
             } else {
                 View.INVISIBLE
             }
+            binding.tvThird.visibility =
+                if (actualPage.offset + actualPage.limit < actualPage.total) {
+                    View.VISIBLE
+                } else {
+                    View.INVISIBLE
+                }
             binding.tvFirst.text = mCharacterListViewModel.pageNumber.toString()
-            binding.tvSecond.text = (mCharacterListViewModel.pageNumber+1).toString()
-            binding.tvThird.text = (mCharacterListViewModel.pageNumber+2).toString()
+            binding.tvSecond.text = (mCharacterListViewModel.pageNumber + 1).toString()
+            binding.tvThird.text = (mCharacterListViewModel.pageNumber + 2).toString()
         }
     }
 

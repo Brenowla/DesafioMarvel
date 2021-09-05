@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/drawable/shape_circular_image.xml" value="0.3828125" />
         <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/drawable/shape_edit_text.xml" value="0.25833333333333336" />
+        <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/drawable/shape_loading.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/drawable/shape_page_not_selected.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/drawable/shape_page_selected.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/drawable/shape_red_block.xml" value="0.24479166666666666" />
@@ -19,6 +20,7 @@
         <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/layout/fragment_slideshow.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/layout/item_character_recycler.xml" value="0.22" />
         <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/layout/item_comics_recycler.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/layout/loading_characters.xml" value="0.2421875" />
         <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/layout/nav_header_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Mirtes/AndroidStudioProjects/DesafioMarvel2/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
       </map>
