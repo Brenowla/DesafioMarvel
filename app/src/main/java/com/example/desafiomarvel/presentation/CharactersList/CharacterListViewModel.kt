@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
+import org.jetbrains.annotations.TestOnly
 import javax.inject.Inject
 
 class CharacterListViewModel @Inject constructor(
@@ -80,4 +81,15 @@ class CharacterListViewModel @Inject constructor(
             }
         }
     }
+
+    @TestOnly
+    fun getPage() = mPage
+
+    @TestOnly
+    fun setPageNumber(page: Int) {
+        mPageNumber = page
+    }
+
+    @TestOnly
+    fun getLoading() = mLoading
 }
