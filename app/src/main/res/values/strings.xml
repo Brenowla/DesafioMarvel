@@ -14,4 +14,5 @@
     <string name="text_test_front">TESTE FRONT END</string>
     <string name="text_name">Nome do personagem</string>
     <string name="text_only_name">Nome</string>
+    <string name="text_comics">Comics</string>
 </resources>

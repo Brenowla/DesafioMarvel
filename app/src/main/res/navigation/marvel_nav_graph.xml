@@ -17,6 +17,10 @@
     <fragment
         android:id="@+id/character_detail"
         android:name="com.example.desafiomarvel.presentation.CharactersDetails.CharacterDetailsFragment"
-        tools:layout="@layout/fragment_character_details" />
+        tools:layout="@layout/fragment_character_details" >
+        <argument
+            android:name="character"
+            app:argType="com.example.desafiomarvel.domain.model.Character" />
+    </fragment>
 
 </navigation>

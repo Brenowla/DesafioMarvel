@@ -27,6 +27,9 @@ class CharacterListViewModel @Inject constructor(
         get() = mLoading
 
     private var mPageNumber = 0
+    val pageNumber: Int
+        get() = mPageNumber
+
     private var mQuery: String? = null
 
     fun loadInitialPage(query: String) {
@@ -35,6 +38,7 @@ class CharacterListViewModel @Inject constructor(
         } else {
             query
         }
+        mPageNumber = 0
         getCharacters()
     }
 
@@ -60,7 +64,7 @@ class CharacterListViewModel @Inject constructor(
 
     fun nextPage() {
         mPage.value?.let { pageInfo ->
-            if ((mPageNumber * LIMIT) < pageInfo.total) {
+            if ((mPageNumber * LIMIT + LIMIT) < pageInfo.total) {
                 mPageNumber += 1
                 getCharacters()
             }
