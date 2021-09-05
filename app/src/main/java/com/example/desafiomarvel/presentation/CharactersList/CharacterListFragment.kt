@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.desafiomarvel.DesafioMarvelApp
 import com.example.desafiomarvel.databinding.FragmentCharactersListBinding
+import com.example.desafiomarvel.domain.model.Character
 import com.example.desafiomarvel.domain.model.PageInfo
 import com.example.desafiomarvel.extensions.textChanges
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -79,11 +80,15 @@ class CharacterListFragment : Fragment() {
     private fun observers() {
         mCharacterListViewModel.page.observe(viewLifecycleOwner) { page ->
             mAdapter.submitList(page.characters)
+            if (page.characters.isEmpty()) {
+                binding.tvEmptyList.visibility = View.VISIBLE
+            }
             binding.rvListCharacters.visibility = View.VISIBLE
             changeNumbers(page)
         }
         mCharacterListViewModel.loading.observe(viewLifecycleOwner) { loading ->
             if (loading) {
+                binding.tvEmptyList.visibility = View.INVISIBLE
                 binding.slList.apply {
                     visibility = View.VISIBLE
                     startShimmer()

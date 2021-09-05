@@ -72,6 +72,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_name" />
 
+    <TextView
+        android:id="@+id/tv_empty_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/text_no_results"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        android:layout_marginTop="20sp"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/grey"
+        android:gravity="center"
+        android:visibility="gone"
+        />
+
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/sl_list"
         android:layout_width="0dp"

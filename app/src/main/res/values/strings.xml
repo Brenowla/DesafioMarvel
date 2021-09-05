@@ -15,4 +15,5 @@
     <string name="text_name">Nome do personagem</string>
     <string name="text_only_name">Nome</string>
     <string name="text_comics">Comics</string>
+    <string name="text_no_results">Sua pesquisa não encontrou resultados</string>
 </resources>
